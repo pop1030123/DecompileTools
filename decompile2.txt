@@ -1,0 +1,72 @@
+1、smali-1.2.6.jar
+用途：.smali文件 转成 classes.dex文件
+说明：.smali文件，类似于.class文件，可以用普通文本编辑器查看和修改。
+用法举例：命令行：java -jar smali.jar classout/ -o classes.dex
+下载：http://code.google.com/p/smali/downloads/list
+ 
+2、baksmali-1.2.6.jar
+用途：classes.dex文件 转成 .smali文件
+说明：classes.dex不便于查看和理解，使用此工具转成的.smali文件易于阅读和修改。
+用法：命令行：java -jar baksmali.jar -o classout/ classes.dex
+下载：http://code.google.com/p/smali/downloads/list
+ 
+3、AXMLPrinter2.jar
+用途：xml文件 转成 普通文本文件(txt)
+说明：apk中的xml文件被搞成二进制了，无法阅读，使用此工具转换后，可以查看正常的xml文件。
+用法举例：命令行：java -jar AXMLPrinter2.jar main.xml > main.txt
+下载：http://code.google.com/p/android4me/downloads/list
+ 
+学习了楼下dohkoos兄弟的总结，我也大概再总结一下：
+1、dexdump
+ 
+androidSDK提供的反编译工具dexdump.exe，将dex文件反编译为较易理解的文本文件。
+位于路径：\android\sdk\android-sdk-windows\platform-tools
+用法：
+dexdump: [-c] [-d] [-f] [-h] [-i] [-l layout] [-m] [-t tempfile] dexfile...
+ 
+ -c : verify checksum and exit
+ -d : disassemble code sections
+ -f : display summary information from file header
+ -h : display file header details
+ -i : ignore checksum failures
+ -l : output layout, either 'plain' or 'xml'
+ -m : dump register maps (and nothing else)
+ -t : temp file name (defaults to /sdcard/dex-temp-*)
+ 
+例子：dexdump classes.dex >dexdump.txt
+2、Dedexer
+ 
+使用工具ddx1.11.jar来进行反编译dex，一般可读性比dexdump工具能强点，但还是不好理解。
+用法：
+Usage: java -jar ddx.jar -o -D -r -d <destination directory> <source>
+       <destination directory> is where the generated files will be placed.
+       <source> is the name of the source DEX file.
+       -D - if present, more detailed error report is printed in case of failure
+.
+       -o - if present, detailed log file will be created about the input DEX fi
+le (dex.log).
+       -r - if present, register trace will be emitted after each instruction
+       -e <deps> - if present, the <deps> directory is supposed to contain depen
+dencies necessary for ODEX disassembly. Read the manual for details.
+ 
+例子：
+java -jar ddx1.11.jar -o -D -r -d src classes.dex //在src目录下生成ddx文件  
+3、AXMLPrinter2 
+ 
+查看apk中的XML资源文件，因为xml都被压缩成bytecode了，所以使用此工具帮助查看。
+用法：
+java -jar AXMLPrinter2.jar AndroidManifest.xml > out.xml
+4、apktool
+dohkoos兄弟对这个讲了不少了。能反编译，也能编译，能看class，也能看xml资源，是个不错的工具。这里推荐一个此工具的下载说明地址。
+http://bbs.gfan.com/thread-971865-1-1.html
+ 
+5、dex2jar
+ 
+将apk或者dex转化为可以用gui查看的class文件。此种貌似很强大。
+下载地址：http://code.google.com/p/dex2jar/downloads/list
+ 
+6、smali和baksmali
+类似于apktool生成的smali文件。此两个工具，smali编译，baksmali反编译。
+ 
+ 
+最后再上一张自己总结的excel，这个应该比较直观，总结的不太好，凑和着理解吧，截个图上来：
