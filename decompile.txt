@@ -1,0 +1,16 @@
+反编译test.apk，生成test.sign.new.apk：
+ 
+1、将附件中工具全部放在一个目录下；
+ 
+2、反编译test.apk:
+命令：java -jar apktool.jar d test.apk
+默认生成test目录。
+ 
+3、修改你需要更改的文件和资源。
+ 
+4、将test目录打包成test.new.apk
+命令： java -jar apktool.jar b test test.new.apk
+ 
+5、给新生成的apk签名
+命令：java -jar ./signapk.jar ./testkey.x509.pem ./testkey.pk8 ./test.new.apk ./test.sign.new.apk
+
